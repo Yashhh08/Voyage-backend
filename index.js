@@ -2,6 +2,7 @@ require("dotenv").config();
 
 const express = require("express");
 require("./configs/mongoose");
+const cors = require("cors");
 
 const userRouter = require("./controller/user");
 const packageRouter = require("./controller/package");
@@ -13,6 +14,7 @@ const app = express();
 const port = process.env.PORT || 3001;
 
 app.use(express.json());
+app.use(cors());
 app.use(userRouter);
 app.use(packageRouter);
 app.use(guideRouter);

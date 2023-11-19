@@ -8,7 +8,7 @@ const blogSchema = mongoose.Schema(
     createdBy: { type: String, default: "Admin" },
   },
   {
-    timeStamps: true,
+    timetamps: true,
   }
 );
 

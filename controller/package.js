@@ -22,7 +22,7 @@ router.post("/packages", auth, async (req, res) => {
 
 router.get("/packages", async (req, res) => {
   try {
-    const packages = await Package.find();
+    const packages = await Package.find().populate({ path: "guides" });
 
     res.status(200).send(packages);
   } catch (error) {
@@ -34,7 +34,9 @@ router.get("/packages/:id", async (req, res) => {
   try {
     const packageId = req.params.id;
 
-    const package = await Package.findById(packageId);
+    const package = await Package.findById(packageId).populate({
+      path: "guides",
+    });
 
     if (!package) {
       return res.status(404).send({ error: "package not found" });
